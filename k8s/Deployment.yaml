@@ -14,8 +14,15 @@ spec:
     spec:
       containers:
       - name: tomcat
+<<<<<<< HEAD
         image:leejs5183/mytomcat2:latest
         ports:
         - containerPort: 8080
+=======
+        image: vehuiah/tomcat2:latest
+>>>>>>> 75aa1e6 (20260204-2)
         imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        
 
