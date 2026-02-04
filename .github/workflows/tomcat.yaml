@@ -1,4 +1,4 @@
-name: tomcat build test2
+name: tomcat build test
 
 on:
   push:
@@ -21,10 +21,13 @@ jobs:
       - name: Build
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mytomcat2:latest .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mytomcat2:${{ github.sha }} .
+
 
       - name: Push
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/mytomcat2:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/mytomcat2:${{ github.sha }}
 
       - name: k8s manifest
         run: |
@@ -36,5 +39,4 @@ jobs:
           git add k8s/deployment.yaml
           git commit -m "update image to ${{ github.sha }} [skip ci]"
           git push origin main
-
 
