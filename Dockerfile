@@ -1,11 +1,3 @@
-FROM rockylinux:8.9
-RUN dnf -y install java-21-openjdk
-RUN mkdir /opt/tomcat
-WORKDIR /opt/tomcat
-ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.115/bin/apache-tomcat-9.0.115.tar.gz /opt/tomcat
-RUN tar xfz apache-tomcat-9.0.115.tar.gz
-RUN mv apache-tomcat-9.0.115/* /opt/tomcat
-EXPOSE 8080
-CMD ["/opt/tomcat/bin/catalina.sh", "run"]
-
+FROM tomcat:latest
+RUN cp -r /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
 
